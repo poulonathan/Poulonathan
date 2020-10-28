@@ -1,283 +1,53 @@
-(function($) {
-
-	'use strict';
-
-	// bootstrap dropdown hover
-
-  // loader
-  var loader = function() {
-    setTimeout(function() { 
-      if($('#loader').length > 0) {
-        $('#loader').removeClass('show');
-      }
-    }, 1);
-  };
-  loader();
-
-  // Stellar
-  $(window).stellar({
-    responsive: true,
-    parallaxBackgrounds: true,
-    parallaxElements: true,
-    horizontalScrolling: false,
-    hideDistantElements: false,
-    scrollProperty: 'scroll'
-  });
-
-	
-	$('nav .dropdown').hover(function(){
-		var $this = $(this);
-		$this.addClass('show');
-		$this.find('> a').attr('aria-expanded', true);
-		$this.find('.dropdown-menu').addClass('show');
-	}, function(){
-		var $this = $(this);
-			$this.removeClass('show');
-			$this.find('> a').attr('aria-expanded', false);
-			$this.find('.dropdown-menu').removeClass('show');
-	});
-
-
-	$('#dropdown04').on('show.bs.dropdown', function () {
-	  console.log('show');
-	});
-
-
-
-	// home slider
-	$('.home-slider').owlCarousel({
-    loop:true,
-    autoplay: true,
-    margin:10,
-    animateOut: 'fadeOut',
-    animateIn: 'fadeIn',
-    nav:true,
-    autoplayHoverPause: true,
-    items: 1,
-    navText : ["<span class='ion-chevron-left'></span>","<span class='ion-chevron-right'></span>"],
-    responsive:{
-      0:{
-        items:1,
-        nav:false
-      },
-      600:{
-        items:1,
-        nav:false
-      },
-      1000:{
-        items:1,
-        nav:true
-      }
-    }
-	});
-
-	// owl carousel
-	var majorCarousel = $('.js-carousel-1');
-	majorCarousel.owlCarousel({
-    loop:true,
-    autoplay: false,
-    stagePadding: 0,
-    margin: 10,
-    animateOut: 'fadeOut',
-    animateIn: 'fadeIn',
-    nav: false,
-    dots: false,
-    autoplayHoverPause: false,
-    items: 3,
-    responsive:{
-      0:{
-        items:1,
-        nav:false
-      },
-      600:{
-        items:2,
-        nav:false
-      },
-      1000:{
-        items:3,
-        nav:true,
-        loop:false
-      }
-  	}
-	});
-
-  // cusotm owl navigation events
-  $('.custom-next').click(function(event){
-    event.preventDefault();
-    // majorCarousel.trigger('owl.next');
-    majorCarousel.trigger('next.owl.carousel');
-
-  })
-  $('.custom-prev').click(function(event){
-    event.preventDefault();
-    // majorCarousel.trigger('owl.prev');
-    majorCarousel.trigger('prev.owl.carousel');
-  })
-
-	// owl carousel
-	var major2Carousel = $('.js-carousel-2');
-	major2Carousel.owlCarousel({
-    loop:true,
-    autoplay: true,
-    stagePadding: 7,
-    margin: 20,
-    animateOut: 'fadeOut',
-    animateIn: 'fadeIn',
-    nav: false,
-    autoplayHoverPause: true,
-    items: 4,
-    navText : ["<span class='ion-chevron-left'></span>","<span class='ion-chevron-right'></span>"],
-    responsive:{
-      0:{
-        items:1,
-        nav:false
-      },
-      600:{
-        items:3,
-        nav:false
-      },
-      1000:{
-        items:4,
-        nav:true,
-        loop:false
-      }
-  	}
-	});
-
-
-  $('.nonloop-block-13').owlCarousel({
-      center: false,
-      items: 1,
-      loop: false,
-      stagePadding: 0,
-      margin: 20,
-      nav: true,
-      navText : ["<span class='ion-chevron-left'></span>","<span class='ion-chevron-right'></span>"],
-      responsive:{
-        600:{
-          margin: 20,
-          stagePadding: 10,
-          items: 2
-        },
-        1000:{
-          margin: 20,
-          stagePadding: 150,
-          items: 2
-        },
-        1200:{
-          margin: 20,
-          stagePadding: 150,
-          items: 3
-        }
-      }
-    });
-
-	var contentWayPoint = function() {
-		var i = 0;
-		$('.element-animate').waypoint( function( direction ) {
-
-			if( direction === 'down' && !$(this.element).hasClass('element-animated') ) {
-				
-				i++;
-
-				$(this.element).addClass('item-animate');
-				setTimeout(function(){
-
-					$('body .element-animate.item-animate').each(function(k){
-						var el = $(this);
-						setTimeout( function () {
-							var effect = el.data('animate-effect');
-							if ( effect === 'fadeIn') {
-								el.addClass('fadeIn element-animated');
-							} else if ( effect === 'fadeInLeft') {
-								el.addClass('fadeInLeft element-animated');
-							} else if ( effect === 'fadeInRight') {
-								el.addClass('fadeInRight element-animated');
-							} else {
-								el.addClass('fadeInUp element-animated');
-							}
-							el.removeClass('item-animate');
-						},  k * 100);
-					});
-					
-				}, 100);
-				
-			}
-
-		} , { offset: '95%' } );
-	};
-	contentWayPoint();
-
-
-  $('.nonloop-block-11').owlCarousel({
-      center: false,
-      items:1,
-      loop:false,
-      stagePadding: 10,
-      margin:0,
-      nav: true,
-      navText: ['<span class="ion-android-arrow-back">', '<span class="ion-android-arrow-forward">'],
-      responsive:{
-        600:{
-          margin:20,
-          stagePadding: 10,
-          items:2
-        },
-        800:{
-          margin:20,
-          stagePadding: 10,
-          items:2
-        },
-        1000:{
-          margin:20,
-          stagePadding: 10,
-          items:3
-        },
-        1900:{
-          margin:20,
-          stagePadding: 200,
-          items:4
-        }
-      }
-    });
-
-
-  var counter = function() {
-    
-    $('#section-counter').waypoint( function( direction ) {
-
-      if( direction === 'down' && !$(this.element).hasClass('element-animated') ) {
-
-        var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',')
-        $('.number').each(function(){
-          var $this = $(this),
-            num = $this.data('number');
-            console.log(num);
-          $this.animateNumber(
-            {
-              number: num,
-              numberStep: comma_separator_number_step
-            }, 7000
-          );
-        });
-        
-      }
-
-    } , { offset: '95%' } );
-
-  }
-  counter();
-
-  $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
-    disableOn: 700,
-    type: 'iframe',
-    mainClass: 'mfp-fade',
-    removalDelay: 160,
-    preloader: false,
-
-    fixedContentPos: false
-  });
-
-
-
-})(jQuery);
+/*!
+ * Item: CardX
+ * Description: Paul Jonathan Engoru Personal Portfolio / Resume / CV / vCard
+ * Author/Developer: Paul Jonathan Engoru
+ * Author/Developer URL: https://themeforest.net/user/Paul_Jonathan_Engoru
+ * Version: v1.0.0
+ * License: Themeforest Standard Licenses: https://themeforest.net/licenses
+ */
+!function(e){"use strict";e(document).ready(function(){function 
+    t(){e(".overlay-block .overlay-close").trigger("click")}e(document).on("click",'a[data-scroll][href^="#"]',
+    function(t){var a=e(".navbar").innerHeight(),o=e(this).attr("href"),n=e(o);0!==n.length&&(t.preventDefault(),
+    e("body, html").animate({scrollTop:n.offset().top-a},600))}),e(window).on("scroll",function(){var t=e(".navbar");
+    t.offset().top>75?t.addClass("scrolled"):t.removeClass("scrolled")}),e(".navbar .navbar-btn").
+    animatedModal({animatedIn:"fadeIn",animatedOut:"fadeOut",animationDuration:".15s",beforeOpen:
+    function(){function t(){return{top:parseInt(e(".navbar").css("marginTop"),10)+e(".navbar .navbar-btn").
+    position().top,left:e(".navbar .navbar-btn").position().left}}e(".overlay-block .overlay-close").css(t()),
+    e(window).on("resize",function(){e(".overlay-block .overlay-close").css(t())})}}),e(document).on("keydown",
+    function(a){27===a.keyCode&&e(".overlay-block").hasClass("overlay-block-on")&&t()}),
+    e(".overlay-block .overlay-menu .nav-link").on("click",function(){t()}),e("body").scrollspy({target:".overlay-menu",
+    offset:e(".navbar").innerHeight()+5});var a,o,n=2500,i=660,r=1500;function s(e){var t=function(e){return e.is
+        (":last-child")?e.parent().children().eq(0):e.next()}(e);e.parents(".cd-headline").hasClass("clip")&&e.parents
+        (".cd-words-wrapper").animate({width:"2px"},i,function(){var a;a=t,e.removeClass("is-visible").addClass
+        ("is-hidden"),a.removeClass("is-hidden").addClass("is-visible"),function(e,t){e.parents(".cd-headline")
+        .hasClass("clip")&&e.parents(".cd-words-wrapper").animate({width:e.width()+10},i,function(){setTimeout
+            (function(){s(e)},r)})}(t)})}a=e(".cd-headline"),o=n,a.each(function(){var t=e(this);if(t.hasClass
+                ("clip")){var a=t.find(".cd-words-wrapper"),n=a.width()+10;a.css("width",n)}setTimeout
+                (function(){s(t.find(".is-visible").eq(0))},o)});var l=window.Shuffle,c=function(e){this.element=e,
+                    this.shuffle=new l(e,{itemSelector:".portfolio-area .shufflejs .single-item",sizer:e.querySelector
+                    (".portfolio-area .shufflejs .sizer-element")}),this._activeFilters=[],this.addFilterButtons()};
+                    c.prototype.addFilterButtons=function(){var e=document.querySelector
+                        (".portfolio-area .filter-control");e&&Array.from(e.children).forEach
+                        (function(e){e.addEventListener("click",this._handleFilterClick.bind(this),!1)},
+                        this)},c.prototype._handleFilterClick=function(e){var t=e.currentTarget.getAttribute
+                            ("data-group");this.shuffle.filter(t)},window.shufflejs=new c(document.getElementById
+                                ("shufflejs")),e(".portfolio-area .filter-control>li").on("click",function()
+                                {e(this).addClass("tab-active").siblings().removeClass("tab-active")}),
+                                e(".portfolio-area .shufflejs .portfolio-item").each(function(){var t=e(this),
+                                    a=t.attr("href");e(t).animatedModal({animatedIn:"fadeIn",animatedOut:"fadeOut",
+                                    animationDuration:".15s",beforeOpen:function(){e(a+".lightbox-wrapper .lightbox-gallery")
+                                    .owlCarousel({loop:!0,margin:10,nav:!1,items:1,smartSpeed:400})},afterClose:function()
+                                    {e(a+".lightbox-wrapper .lightbox-gallery").trigger("destroy.owl.carousel")}})}),
+                                    e(".testimonials-area .owl-carousel").owlCarousel({items:1,loop:!0,margin:0,nav:!1,
+                                        smartSpeed:400}),e(".contact-form").on("submit",function(t){var a=e(this),o=a.find
+                                            ("#contact-submit"),n=a.find(".contact-error");t.preventDefault(),o.html
+                                            ("Wait...").addClass("wait").prop("disabled",!0),setTimeout(function(){e.ajax
+                                                ({url:a.attr("action"),type:"POST",data:a.serialize()}).done(function(e)
+                                                {"success"==e?(o.removeClass("wait").html("Success").addClass("success"),
+                                                setTimeout(function(){o.html("Submit").removeClass("success").prop("disabled",!1)},
+                                                6e3),a[0].reset()):(o.removeClass("wait").html("Error").addClass("error"),
+                                                n.fadeIn(200),setTimeout(function(){o.html("Submit").removeClass("error").prop
+                                                ("disabled",!1),n.fadeOut(200)},6e3))})},1e3)}),e(window).trigger("scroll")}),e
+                                                (window).on("load",function(){e(".preloader-icon, .preloader-brand").fadeOut(400),
+                                                e(".preloader").delay(500).fadeOut("slow")})}(jQuery);
