@@ -1,6 +1,6 @@
 /*!
- * Item: CardX
- * Description: Paul Jonathan Engoru Personal Portfolio / Resume / CV / vCard
+ * Item: Poulo Nathan
+ * Description: Paul Jonathan Engoru 
  * Author/Developer: Paul Jonathan Engoru
  * Author/Developer URL: https://themeforest.net/user/Paul_Jonathan_Engoru
  * Version: v1.0.0
